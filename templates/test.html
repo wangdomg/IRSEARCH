@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+        <title>新闻搜索引擎</title>
+
+       <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+
+       <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+        <link href="../static/StyleSheet.css?v=1.0" rel="stylesheet" type="text/css" />
+	   <script src="../static/jquery-1.4.1.js" type="text/javascript"></script>
+	   <script type="text/javascript" src="../static/JScript2.js"></script>
+
+		<style type="text/css">
+			div{margin:0;padding:0}
+			span{float: left;display: inline-block;height: 40px;}
+			.bar1 {background: white;}
+			.bar1 input {
+				border: 2px solid #7BA7AB;
+				border-radius: 0px;
+				background: white;
+				color: black;
+			}
+			.bar1 button {
+				top: 0;
+				right: 0;
+				background: #7BA7AB;
+				border-radius: 0 0px 0px 0;
+			}
+			a:visited{color: black}
+			a:link{color: black;}
+			a:hover{color: red;}
+			a:active{color: black}
+			
+		</style>
+</head>
+<body>
+<div style="margin-top:10px" style="z-index: 1000;height:200px">
+	<p><img class="img-responsive center-block" src="../static/ir.png" /></p>
+ <form id="form1" action="/search" method="GET" style="text-align: center" runat="server">
+	 <div class="col-lg-20 col-lg-offset-4" >
+		 <div class="search bar1">
+			<div class="input-group">
+				<span class="span1">
+				<input placeholder=""  url="true" id="Text1" type="text" name="searchword" style="width:430px;height: 40px;" />
+				</span>
+				<span class="span2">
+				  <button class="btn btn-default" type="submit" style="height:40px;width:100px">搜索一下</button>
+			   </span>
+			</div><!-- /input-group -->
+		  </div>
+	 </div>
+   </form>
+</div>
+
+<!--<br><br><br><br>-->
+<!--<div>最热新闻</div>-->
+<div>
+    		<div style="display: none; position: absolute;z-index:9999;" id="allSitesBoxHdl" class="classlist"
+        		onmouseover="this.style.display='block'" onmouseout="this.style.display='none'">
+				<ul id="allSitesBoxContent" > </ul>
+    		</div>
+			<script type="text/javascript"> Init();</script>
+</div>
+
+<br>
+{% if hotnews_dic|length >0 %}
+
+	<div class="container" id="summary-container" style="margin-top:10px;margin-left: 150px">
+		<hr class="divider">
+		<div class="row" style="text-align: center">
+			{% for news in hotnews_dic %}
+				{% if loop.index%3==0 %}
+					<div class="col-md-4" style="margin-top: 25px; text-align: right">
+						<a target="_blank" href="{{news.url}}" style="font-weight:900">{{news.title}}</a>
+					</div>
+				{% endif %}
+
+				{% if loop.index%3==1 %}
+					<div class="col-md-4" style="margin-top: 25px; text-align: left">
+						<a target="_blank" href="{{news.url}}" style="font-weight:900">{{news.title}}</a>
+					</div>
+				{% endif %}
+
+				{% if loop.index%3==2 %}
+					<div class="col-md-4" style="margin-top: 25px; text-align: center">
+						<a target="_blank" href="{{news.url}}" style="font-weight:900">{{news.title}}</a>
+					</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+{% endif %}
+</div>
+</body>
+</html>
