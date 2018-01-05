@@ -1,2 +1,1 @@
-# IRSEARCH
-# 信息检索大作业
+# IRSEARCH--信息检索大作业
